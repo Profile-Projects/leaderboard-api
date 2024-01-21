@@ -1,0 +1,29 @@
+CREATE TABLE game (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE user (
+    id SERIAL PRIMARY KEY,
+    game_id BIGINT UNSIGNED,
+    name VARCHAR(255) NOT NULL,
+    FOREIGN KEY (game_id) REFERENCES game(id)
+);
+
+CREATE TABLE score (
+    id SERIAL PRIMARY KEY,
+    game_id BIGINT UNSIGNED,
+    user_id BIGINT UNSIGNED,
+    score DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (game_id) REFERENCES game(id),
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+CREATE TABLE friends (
+    id SERIAL PRIMARY KEY,
+    user_id BIGINT UNSIGNED,
+    friend_id BIGINT UNSIGNED,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (friend_id) REFERENCES user(id)
+);
+
