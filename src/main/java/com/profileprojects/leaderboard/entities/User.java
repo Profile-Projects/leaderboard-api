@@ -8,14 +8,18 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Game {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+
+    @JsonProperty("game_id")
+    @Column(name = "game_id")
+    private Long gameId;
+
+    @Column
     @JsonProperty("name")
     private String name;
-
 }
